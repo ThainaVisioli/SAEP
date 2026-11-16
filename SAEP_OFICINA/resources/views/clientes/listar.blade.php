@@ -1,0 +1,6 @@
+@extends('layout') @section('title','Clientes') @section('content')
+<div class="panel"><div class="top"><h1>Clientes cadastrados</h1><a class="btn" href="/clientes/create">+ Novo cliente</a></div>
+<form method="GET" action="/clientes/listar" class="actions"><input style="max-width:380px;margin:0" name="termo" placeholder="Buscar por nome, e-mail ou telefone" value="{{request('termo')}}"><button class="btn">Buscar</button><a class="btn gray" href="/clientes/listar">Limpar</a></form>
+<div class="table-wrap"><table><thead><tr><th>Nome</th><th>CPF (protegido)</th><th>Telefone</th><th>E-mail</th><th>Endereço</th><th>Ação</th></tr></thead><tbody>
+@forelse($clientes as $c)<tr><td>{{$c->nome}}</td><td>•••.•••.•••-••</td><td>{{$c->telefone}}</td><td>{{$c->email}}</td><td>{{$c->endereco}}</td><td><a class="btn" href="/clientes/{{$c->id}}/edit">Editar</a></td></tr>@empty<tr><td colspan="6">Nenhum cliente encontrado.</td></tr>@endforelse
+</tbody></table></div><p><a href="/principal">Voltar ao menu</a></p></div>@endsection
